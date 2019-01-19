@@ -9,12 +9,12 @@ struct Result
     char name_func_g[5];
     char name_func_f[5];
     char name_func_y[5];
-    float value_func_g;
-    float value_func_f;
-    float value_func_y;
+    double value_func_g;
+    double value_func_f;
+    double value_func_y;
 };
 
-float a, x_max, x, g, f, y, step_value;
+double a, x_max, x, g, f, y, step_value;
 char a_ch[50], x_ch[50], x_max_ch[50], step_ch[50], step_value_ch[50], result_ch[50];
 int step,l=0, num, even;
 Result *result = new Result[step];
