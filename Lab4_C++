@@ -1,0 +1,93 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+float a, x_max, x, g, f, y, step_value, max_value, min_value;
+int choose, step, count = 0;
+float *result = new float[step];
+
+void calc()
+{
+	switch (choose)
+	{
+		case 1: g = 5 * (27 * pow(a, 2) - 51 * a * x + 20 * pow(x, 2)) / -10 * pow(a, 2) + 21 * a * x + 27 * pow(x, 2);
+		    result[count] = g;
+			break;
+		case 2: f = sinh(2 * pow(a, 2) + 21 * a * x + 10 * pow(x, 2));
+		    result[count] = f;
+			break;
+		case 3: y = -asin(4 * pow(a, 2) - 3 * a * x - 7 * pow(x, 2));
+		    result[count] = y;
+			break;
+		default: cout << "Function does not exist!" << endl;
+		break;
+	}
+}
+
+int main()
+{
+	cout<<"  x="; cin>>x;
+    cout<<"  a="; cin>>a;
+   	cout << "Enter x maximum: "; cin >> x_max;
+	
+	while (x > x_max)
+	{
+		cout << "X is greater than max X. Enter again" << endl;
+		cout << "Enter x: ";
+		cin >> x;
+		cout << "Enter x maximum: ";
+		cin >> x_max;
+	}
+	cout << "Enter the number of steps: ";
+	cin >> step;
+	cout << "Enter step size: ";
+	cin >> step_value;
+	cout << "1 - function G\n2 - function F\n3 - function Y\nEnter number funkcion: ";
+	cin >> choose;
+	
+	while (count < step)
+	{
+		calc();
+		if (x > x_max)
+		{
+			cout << "Error. X is greater than max X." << endl;
+			break;
+		}
+		else
+		{
+			x += step_value;
+			count += 1;
+		}
+	}
+	
+	cout << endl << "Rezults:" << endl;
+	for (int i; i < count; ++i)
+	{
+		cout << result[i] << endl;
+	}
+	
+	min_value = result[0];
+	max_value = result[0];
+	
+	for (int i = 0; i < count; ++i)
+	{
+        if (result[i] > max_value)
+		{
+            max_value = result[i];
+        }
+    }
+    
+    for (int i = 0; i < count; ++i)
+	{
+        if (result[i] < min_value)
+		{
+            min_value = result[i];
+        }
+    }
+    
+    cout << endl << "Minimum value: " << min_value << endl;
+    cout << "Maximum value: " << max_value << endl;
+    
+	
+	return 0;
+};
