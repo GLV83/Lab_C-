@@ -1,0 +1,30 @@
+#include <iostream>
+#include <math.h>
+ 
+using namespace std;
+ 
+int main()
+{
+    float a,x,g,f,y;
+    int choose;
+    cout<<"  x="; cin>>x;
+    cout<<"  a="; cin>>a;
+    cout << "1 - function G\n2 - function F\n3 - function Y\nEnter number funkcion: ";
+	cin >> choose;
+	switch (choose)
+	{
+		case 1: g = 5 * (27 * pow(a, 2) - 51 * a * x + 20 * pow(x, 2)) / -10 * pow(a, 2) + 21 * a * x + 27 * pow(x, 2);
+		cout << "g = " << g << endl; 
+		break;
+		case 2: f = sinh(2 * pow(a, 2) + 21 * a * x + 10 * pow(x, 2));
+		cout << "f = " << f << endl;
+		break;
+		case 3: y = -asin(4 * pow(a, 2) - 3 * a * x - 7 * pow(x, 2));
+		cout << "y = " << y << endl;
+		break;
+		default: cout << "Function does not exist!" << endl;
+		break;
+	}
+    
+    return 0;
+};
