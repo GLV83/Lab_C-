@@ -1,0 +1,109 @@
+#include <iostream>
+#include <cstdlib>
+#include <math.h>
+using namespace std;
+
+float a, x_max, x, g, f, y, step_value, search;
+char a_ch[255], x_ch[255], x_max_ch[255], step_ch[255], step_value_ch[255], result_ch[255];
+int even, num, step, choose, count = 0, coin = 0;
+float *result = new float[step];
+
+void calc()
+{
+	switch (choose)
+	{
+		case 1: g = 5 * (27 * pow(a, 2) - 51 * a * x + 20 * pow(x, 2)) / -10 * pow(a, 2) + 21 * a * x + 27 * pow(x, 2);
+		    result[count] = g;
+			break;
+		case 2: f = sinh(2 * pow(a, 2) + 21 * a * x + 10 * pow(x, 2));
+		    result[count] = f;
+			break;
+		case 3: y = -asin(4 * pow(a, 2) - 3 * a * x - 7 * pow(x, 2));
+		    result[count] = y;
+			break;
+		default: cout << "Function does not exist!" << endl;
+		break;
+	}
+}
+
+int main()
+{
+    cout << "a="; cin >> a_ch;
+    a = atof(a_ch);
+   	cout << "x="; cin >> x_ch;
+    x = atof(x_ch);
+	cout << "Enter x maximum: "; cin >> x_max_ch;
+	x_max = atof(x_max_ch);
+	
+	while (x > x_max)
+	{
+		cout << "X is greater than max X. Enter again" << endl;
+		cout << "Enter x: ";
+		cin >> x_ch;
+		x = atof(x_ch);
+		cout << "Enter x maximum: ";
+		cin >> x_max_ch;
+		x_max = atof(x_max_ch);
+	}
+	cout << "Enter the number of steps: ";
+	cin >> step_ch;
+	cout << "Enter step size: ";
+	cin >> step_value_ch;
+	cout << "1 - function G\n2 - function F\n3 - function Y\nEnter number funkcion: ";
+	cin >> choose;
+	
+	while (count < step)
+	{
+		calc();
+		if (x > x_max)
+		{
+			cout << "Error. X is greater than max X." << endl;
+			break;
+		}
+		else
+		{
+			x += step_value;
+			count += 1;
+		}
+	}
+	
+//	cout << endl << "Rezults:" << endl;
+//    for (int i; i < count; ++i)
+//	{
+//		cout << result[i] << endl;
+//	}
+	
+	for (int i; i < count; ++i)
+	{
+	    itoa (result[i], result_ch, 10);
+		cout << endl << "Results: " << result[i] << endl;
+		cout << "Results STR: " << result_ch << endl << endl;
+	}
+	
+	cout << endl << "Enter search number: ";
+    cin >> search;
+	
+	for (int i = 0; i < step; i++)
+ 	{
+ 		if (result[i] == search)
+ 		{
+ 			coin += 1;
+		}
+	}
+	cout << "Naideno sovpadenii: " << coin << endl;
+	 
+	cout << endl << "Vvedite chislo, poschitaem chetnie cifri: ";
+	cin >> num;
+	
+	while (num > 0)
+	{
+		if (num % 2 == 0)
+		{
+			even += 1;
+		}
+		num = num / 10;
+	}
+    cout << "Read number" << even << endl;
+    
+	return 0;
+};
