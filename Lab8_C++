@@ -1,0 +1,94 @@
+#include <iostream>
+#include <cstdlib>
+#include <fstream>
+#include <cstdlib>
+#include <math.h>
+using namespace std;
+
+float centr_x, centr_y, radius, key_x, key_y, point_x;
+int point, enter, not_enter, enter_x;
+float *x = new float[point];
+float *y = new float[point];
+float *result_x = new float[point];
+float *result_y = new float[point];
+float *result = new float[point];
+
+void calc()
+{
+	for (int i = 0; i < point; i++)
+	{
+		key_x = (x[i] - centr_x) * (x[i] - centr_x);
+		result_x[i] = key_x;
+	}
+	for (int i = 0; i < point; i++)
+	{
+		key_y = (y[i] - centr_y) * (y[i] - centr_y);
+		result_y[i] = key_y;
+	}
+	for (int i = 0; i < point; i++)
+	{
+		result[i] = result_x[i] + result_y[i];
+	}
+	for (int i =0; i < point; i++)
+	{
+		if (result[i] <= radius * radius)
+		{
+			enter += 1;
+		}
+		else
+		{
+			not_enter += 1;
+		}
+	}
+	cout << endl << "Points enter or lie on a circle: " << enter << endl;
+	cout << endl << "Points do not enter the circle: " << not_enter << endl;
+	cout << endl << "Centr circle: x: " << centr_x << " ; y: " << centr_y << endl;
+	cout << endl << "Total points: " << point << endl;
+}
+
+void search()
+{
+	cout << endl << "Enter x coordinate: ";
+	cin >> point_x;
+	for (int i = 0; i < point; i++)
+	{
+		if (x[i] == point_x)
+		{
+			enter_x += 1;
+		}
+	}
+	cout << endl << "Number of points on this coordinate: " << enter_x << endl;
+}
+
+int main()
+{
+	cout << "Enter x coordinate for center of circle: ";
+	cin >> centr_x;
+	cout << "Enter y coordinate for center of circle: ";
+	cin >> centr_y;
+	cout << "Enter the radius of the circle: ";
+	cin >> radius;
+	cout << "Enter the number of points: ";
+	cin >> point;
+	
+	for (int i = 0; i < point; ++i)
+	{
+		x[i] = rand() % 5000 - 10; 
+	}
+	for (int i = 0; i < point; ++i)
+	{
+		y[i] = rand() % 5000 - 10;
+	}
+	
+	calc();
+	search();
+	
+	float time = clock() / 1000.0;
+	
+	ofstream fout("time.txt");
+	fout << "Lead time: " << time << " s" << endl;
+	fout.close();
+	cout << endl << "Write lead time to time.txt" << endl;
+	
+	return 0;
+}
