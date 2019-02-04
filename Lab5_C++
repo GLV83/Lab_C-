@@ -75,7 +75,7 @@ int main()
 	
 	for (int i; i < count; ++i)
 	{
-	    itoa (result[i], result_ch, 10);
+//	    itoa (result[i], result_ch, 10);
 		cout << endl << "Results: " << result[i] << endl;
 		cout << "Results STR: " << result_ch << endl << endl;
 	}
@@ -90,9 +90,9 @@ int main()
  			coin += 1;
 		}
 	}
-	cout << "Naideno sovpadenii: " << coin << endl;
+	cout << "Matches found: " << coin << endl;
 	 
-	cout << endl << "Vvedite chislo, poschitaem chetnie cifri: ";
+	cout << endl << "Enter a number. Count even numbers: ";
 	cin >> num;
 	
 	while (num > 0)
